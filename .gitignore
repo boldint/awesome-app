@@ -1,0 +1,12 @@
+
+**/.DS_Store
+
+**/.idea
+**/**.iml
+
+**/env
+**/venv
+
+**/cdk.out
+
+**/**.sqlite3

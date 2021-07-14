@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+      python: 3.8
+    commands:
+      - n 13.12.0
+      - cd ${CODEBUILD_SRC_DIR}/infra
+      - npm install -g aws-cdk@1.113.0
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - cd ${CODEBUILD_SRC_DIR}/app
+      - npm install
+      - CI=true npm test
+  build:
+    commands:
+      - cd ${CODEBUILD_SRC_DIR}/infra
+      - cdk bootstrap
+      - cdk deploy --all --require-approval never
+
+
+
